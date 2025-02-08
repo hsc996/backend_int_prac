@@ -1,0 +1,27 @@
+{
+  "name": "backend_int_prac",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc -- watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsc996/backend_int_prac.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hsc996/backend_int_prac/issues"
+  },
+  "homepage": "https://github.com/hsc996/backend_int_prac#readme",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "nodemon": "^3.1.9",
+    "typescript": "^5.7.3"
+  }
+}

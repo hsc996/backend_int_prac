@@ -32,15 +32,6 @@ async function dbConnect(retries = 5, delay = 5000): Promise<void> {
     }
 
     // MongoDB connection event listeners
-    mongoose.connection.on("disconnected", () => {
-        console.warn("MongoDB Disconnected! Attempting to reconnect...");
-        dbConnect();
-    });
-
-    mongoose.connection.on("reconnected", () => {
-        console.log("MongoDB Reconnected!");
-    });
-
     mongoose.connection.on("error", (err) => {
         console.error("MongoDB Connection Error: ", err);
     });

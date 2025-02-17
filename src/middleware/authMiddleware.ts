@@ -1,7 +1,8 @@
-import { Request, Response, NextFunction } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
-const jwtSecretKey = process.env.JWT_SECRET_KEY || "your_secret_key";
+const jwtSecreyKey = process.env.JWT_SECRET_KEY || "your_secret_key";
 
 interface JWTPayload {
     userId: string
@@ -25,20 +26,18 @@ export default function authMiddleware(
     }
 
     try {
-        const decodedData = jwt.verify(providedToken, jwtSecretKey) as JWTPayload;
+        const decodedData = jwt.verify(providedToken, jwtSecreyKey) as JWTPayload;
 
         if (decodedData?.userId){
             req.authUserData = decodedData;
-            return next();
-        } else {
-            return res.status(401).json({ message: "Please sign in to view this data."});
+            next();
         }
     } catch (error: any) {
         const errorMessage =
-            error.name === "TokenExpiredError"
-            ? "Token expired. Please log in again."
-            : "Invalid token. Please sign in to view this content.";
-
-        return res.status(401).json({ message: errorMessage });
+             error.name === "TokenExpiredError"
+                ? "Token expired. Please log in again."
+                : "Invalid token. Please sign in to view this content.";
+        
+        return res.status(400).json({ error: errorMessage })
     }
 }

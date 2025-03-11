@@ -105,3 +105,11 @@ router.post("/signin", async (req: Request, res: Response): Promise<void> => {
 });
 
 export default router;
+
+
+
+router.post("signin", async (req: Request, res: Response): Promise<void> => {
+  // Extract email, username and password from request body
+
+  // Ensure either 
+})
